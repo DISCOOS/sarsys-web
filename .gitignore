@@ -79,3 +79,5 @@ yarn-error.log*
 .idea
 .vscode
 .firebase
+# Local Netlify folder
+.netlify
