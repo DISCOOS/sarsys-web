@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #151616;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.content-main {
+  border: 0 !important;
+  margin: 0 !important;
+  padding:0 !important;
+  text-align: left !important;
+  align-content: start !important;
+}
+
+.ui.icon.menu .item {
+  text-align: left !important;
+  padding-left: 5px !important;
+}
+
