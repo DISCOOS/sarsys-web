@@ -14,6 +14,8 @@ import {
 import oidcConfiguration from "./configuration";
 import Authenticating from "./Authenticating";
 import Callback from "./Callback";
+import NotAuthenticated from "./NotAuthenticated";
+import NotAuthorized from "./NotAuthorized";
 
 export const MapContext = React.createContext();
 export const UserContext = React.createContext();
@@ -39,6 +41,8 @@ function App() {
                 loggerLevel={oidcLog.DEBUG}
                 authenticating={Authenticating}
                 callbackComponentOverride={Callback}
+                notAuthenticated={NotAuthenticated}
+                notAuthorized={NotAuthorized}
               >
                 <Switch>
                   <Route path="/" component={withOidcSecure(LeftIconBar)} />
