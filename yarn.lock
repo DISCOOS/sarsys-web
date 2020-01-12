@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@axa-fr/react-oidc-context@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc-context/-/react-oidc-context-3.0.6.tgz#443c211417f52eafe55a210f0d2fe226f27783f9"
+  integrity sha512-c3LzEXdzTTHqdHGspCtE3QvgEONeCPj6fHvg7SZZZWMhPbD6cNmtUpnWgxS2xnIpzJJHAxNChKNuyX82GpCkRQ==
+  dependencies:
+    "@axa-fr/react-oidc-core" "^3.0.6"
+
+"@axa-fr/react-oidc-core@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@axa-fr/react-oidc-core/-/react-oidc-core-3.0.6.tgz#6f4bfdfcd7f75f971ee1618d45b5f3c499000f4f"
+  integrity sha512-IoRfuM/P1Z9u6/wjG4OcBbRjZigCsBzMmUmPWmIWo2OackgFrRX6j5s53McwfvUfzgAmqsbKioOHp6jDkzw6IQ==
+
 "@babel/code-frame@7.5.5", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.5.5.tgz#bc0782f6d69f7b7d49531219699b988f669a8f9d"

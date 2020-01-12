@@ -19,8 +19,6 @@ import GroupIcon from "@material-ui/icons/Group";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import IncidentMap from "./Pages/IncidentMap";
 import { UserContext } from "./App";
-import { AuthContext } from "./Auth/AuthProvider";
-import { Z_BLOCK } from "zlib";
 
 const drawerWidth = 240;
 
@@ -82,27 +80,12 @@ export default function MapPage(props) {
     setShowPlanned(!showPlanned);
   };
 
-  const userContext = useContext(UserContext);
-  const authContext = useContext(AuthContext);
-  console.log("Auth: ");
-  console.log(authContext);
-  const { user, role } = userContext;
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  //authContext.getUser().then(user => console.log(user));
-
-  // const handleClickSegments = e => {
-  //   console.log(e.target);
-  //   setOpenPlanned(!openPlanned);
-  // };
-
   const drawer = (
     <div>
-      <div className={classes.toolbar}>{user}</div>
-
       <Divider className={classes.drawerDivider} />
       <List
         dense={true}
@@ -167,7 +150,7 @@ export default function MapPage(props) {
               paper: classes.drawerPaper
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true
             }}
           >
             {drawer}

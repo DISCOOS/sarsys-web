@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -7,7 +7,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-import MapIcon from "@material-ui/icons/MapOutlined";
 import WarningIcon from "@material-ui/icons/WarningOutlined";
 import LockIcon from "@material-ui/icons/LockOutlined";
 import SettingsIcon from "@material-ui/icons/SettingsOutlined";
@@ -18,6 +17,9 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 
 import IncidentPage from "./IncidentPage";
 import MapPage from "./MapPage";
+import { AuthenticationContext } from "@axa-fr/react-oidc-context/dist/Context";
+import LogoutDialog from "./LogoutDialog";
+import { useReactOidc } from "@axa-fr/react-oidc-context";
 
 const drawerWidth = 55;
 
@@ -49,7 +51,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function LeftIconBar() {
+  const authContext = useContext(AuthenticationContext);
+  const { oidcUser } = useReactOidc();
+  const { profile } = oidcUser;
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
   const classes = useStyles();
+
+  console.log("OIDC USer in iconbar: ");
+  const expires_at = oidcUser.expires_at;
+  const expire_date = new Date(expires_at * 1000);
+  console.log("Expires: " + expires_at);
+  console.log(
+    `access_token expires:  ${expire_date.getHours()}:${expire_date.getMinutes()}:${expire_date.getSeconds()}`
+  );
+
+  const showLogoutDialogHandler = () => {
+    //authContext.logout();
+    setLogoutDialogOpen(true);
+  };
+
+  const logoutHandler = () => {
+    authContext.logout();
+  };
 
   return (
     <div className={classes.root}>
@@ -85,7 +108,11 @@ export default function LeftIconBar() {
           </ListItem>
         </List>
         <List className={classes.bottomIcons}>
-          <ListItem button key={"logout"}>
+          <ListItem
+            button
+            key={"logout"}
+            onClick={e => showLogoutDialogHandler()}
+          >
             <ListItemIcon className={classes.drawerIcons}>
               <LockIcon />
             </ListItemIcon>
@@ -121,6 +148,11 @@ export default function LeftIconBar() {
           </Route>
         </Switch>
       </main>
+      <LogoutDialog
+        show={logoutDialogOpen}
+        onClose={() => setLogoutDialogOpen(false)}
+        onLogout={() => logoutHandler()}
+      />
     </div>
   );
 }

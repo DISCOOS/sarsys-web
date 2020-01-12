@@ -11,8 +11,6 @@ import Typography from "@material-ui/core/Typography";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import IncidentMap from "./Pages/IncidentMap";
-import { UserContext } from "./App";
-import { AuthContext } from "./Auth/AuthProvider";
 
 const drawerWidth = 240;
 
@@ -65,17 +63,9 @@ export default function IncidentPage(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const userContext = useContext(UserContext);
-  const authContext = useContext(AuthContext);
-  console.log("Auth: ");
-  console.log(authContext);
-  const { user, role } = userContext;
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  //authContext.getUser().then(user => console.log(user));
 
   const [open, setOpen, openPOI, setOpenPOI] = React.useState(true);
 
@@ -90,9 +80,7 @@ export default function IncidentPage(props) {
 
   const drawer = (
     <div>
-      <div className={classes.header}>
-        <div className={classes.toolbar}>{user}</div>
-      </div>
+      <div className={classes.header}></div>
       <Divider className={classes.drawerDivider} />
       <Grid
         container
