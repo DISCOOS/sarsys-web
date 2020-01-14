@@ -1,11 +1,12 @@
 const configuration = {
   client_id: "sarsys-web",
-  redirect_uri: "http://localhost:3000/authentication/callback",
+  redirect_uri: process.env.REACT_APP_URL + "/authentication/callback",
   response_type: "id_token token",
-  post_logout_redirect_uri: "http://localhost:3000/",
+  post_logout_redirect_uri: process.env.REACT_APP_URL,
   scope: "openid roles",
   authority: "https://id.discoos.io/auth/realms/DISCOOS",
-  silent_redirect_uri: "http://localhost:3000/authentication/silent_callback",
+  silent_redirect_uri:
+    process.env.REACT_APP_URL + "/authentication/silent_callback",
   automaticSilentRenew: true,
   loadUserInfo: true,
   triggerAuthFlow: true

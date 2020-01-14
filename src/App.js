@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import LeftIconBar from "./LeftIconBar";
 import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core";
@@ -10,7 +9,6 @@ import {
   oidcLog,
   withOidcSecure
 } from "@axa-fr/react-oidc-context";
-
 import oidcConfiguration from "./configuration";
 import Authenticating from "./Authenticating";
 import Callback from "./Callback";
