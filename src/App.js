@@ -9,6 +9,12 @@ import {
   oidcLog,
   withOidcSecure
 } from "@axa-fr/react-oidc-context";
+
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./rootReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
+
 import oidcConfiguration from "./configuration";
 import Authenticating from "./Authenticating";
 import Callback from "./Callback";
@@ -25,32 +31,36 @@ const theme = createMuiTheme({
   }
 });
 
+const store = createStore(rootReducer, {}, composeWithDevTools());
+
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <UserContext.Provider value={{ user: "Username", role: "user" }}>
-        <MapContext.Provider
-          value={{ basemap: "topo4", zoom: 14, center: [59.8419, 11.0315] }}
-        >
-          <div className="App">
-            <Router>
-              <AuthenticationProvider
-                configuration={oidcConfiguration}
-                loggerLevel={oidcLog.DEBUG}
-                authenticating={Authenticating}
-                callbackComponentOverride={Callback}
-                notAuthenticated={NotAuthenticated}
-                notAuthorized={NotAuthorized}
-              >
-                <Switch>
-                  <Route path="/" component={withOidcSecure(LeftIconBar)} />
-                </Switch>
-              </AuthenticationProvider>
-            </Router>
-          </div>
-        </MapContext.Provider>
-      </UserContext.Provider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <UserContext.Provider value={{ user: "Username", role: "user" }}>
+          <MapContext.Provider
+            value={{ basemap: "topo4", zoom: 14, center: [59.8419, 11.0315] }}
+          >
+            <div className="App">
+              <Router>
+                <AuthenticationProvider
+                  configuration={oidcConfiguration}
+                  loggerLevel={oidcLog.DEBUG}
+                  authenticating={Authenticating}
+                  callbackComponentOverride={Callback}
+                  notAuthenticated={NotAuthenticated}
+                  notAuthorized={NotAuthorized}
+                >
+                  <Switch>
+                    <Route path="/" component={withOidcSecure(LeftIconBar)} />
+                  </Switch>
+                </AuthenticationProvider>
+              </Router>
+            </div>
+          </MapContext.Provider>
+        </UserContext.Provider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

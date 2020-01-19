@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import IncidentsDialog from "./IncidentsDialog";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import IncidentMap from "./Pages/IncidentMap";
@@ -61,26 +62,38 @@ export default function IncidentPage(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [incidentsDialogOpen, setIncidentsDialogOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const [open, setOpen, openPOI, setOpenPOI] = React.useState(true);
+  const showIncidentsDialogHandler = () => {
+    setIncidentsDialogOpen(true);
+  };
+
+  const [open, setOpen] = React.useState(true);
 
   const handleClickSegments = e => {
     console.log(e.target);
     setOpen(!open);
   };
 
-  const handleClickPOI = () => {
-    setOpenPOI(!openPOI);
+  const selectIncidentHandler = () => {
+    console.log("Incident selected");
   };
 
   const drawer = (
     <div>
       <div className={classes.header}></div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={e => showIncidentsDialogHandler()}
+      >
+        Velg hendelse
+      </Button>
       <Divider className={classes.drawerDivider} />
       <Grid
         container
@@ -278,6 +291,11 @@ export default function IncidentPage(props) {
       <main className={classes.content}>
         <IncidentMap basemap="topo4"></IncidentMap>
       </main>
+      <IncidentsDialog
+        show={incidentsDialogOpen}
+        onClose={() => setIncidentsDialogOpen(false)}
+        onSelect={() => selectIncidentHandler()}
+      />
     </div>
   );
 }

@@ -66,7 +66,6 @@ export default function LeftIconBar() {
   );
 
   const showLogoutDialogHandler = () => {
-    //authContext.logout();
     setLogoutDialogOpen(true);
   };
 
