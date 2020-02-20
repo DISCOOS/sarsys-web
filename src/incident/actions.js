@@ -7,8 +7,13 @@ export const REMOVE_INCIDENT = "REMOVE_INCIDENT";
 
 export function getIncidents() {
   return async function(dispatch) {
+    const res = await fetch(
+      "https://sarsys.app/api/operations?offset=0&limit=0"
+    );
+    const incidents = await res.json();
     return dispatch({
-      type: "GET_INCIDENTS"
+      type: "GET_INCIDENTS",
+      data: incidents.entries
     });
   };
 }

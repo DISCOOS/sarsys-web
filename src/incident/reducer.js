@@ -1,5 +1,4 @@
-import { GET_INCIDENTS, GET_INCIDENT } from "./node_modules/-/actions";
-import { REMOVE_INCIDENT } from "./actions";
+import { GET_INCIDENTS, GET_INCIDENT, REMOVE_INCIDENT } from "./actions";
 
 const initialState = {
   incidents: [],

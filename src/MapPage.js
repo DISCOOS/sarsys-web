@@ -15,9 +15,9 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 import GroupIcon from "@material-ui/icons/Group";
-
+import IncidentMap from "./pages/IncidentMap";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import IncidentMap from "./Pages/IncidentMap";
+
 import { UserContext } from "./App";
 
 const drawerWidth = 240;

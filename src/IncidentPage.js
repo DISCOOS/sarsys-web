@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import IncidentsDialog from "./IncidentsDialog";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import IncidentMap from "./Pages/IncidentMap";
+import IncidentMap from "./pages/IncidentMap";
 
 const drawerWidth = 240;
 
