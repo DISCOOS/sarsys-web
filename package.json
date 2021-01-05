@@ -12,7 +12,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/leaflet-draw": "^1.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "leaflet": "^1.6.0",
     "leaflet-draw": "^1.0.4",
     "lodash": "^4.17.15",
